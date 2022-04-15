@@ -1,17 +1,12 @@
 const http = require('http');
 
-const server = http.createServer();
-
-server.addListener('request', function(request, response){
-    console.log('requested...');
+function onRequest(request, response) {
+    console.log('request received.');
     response.writeHead(200, {'Content-Type' : 'text/plain'});
-    response.write('Hello nodeJS');
+    response.write('Hello Word');
     response.end();
-});
+}
 
-server.addListener('connection', function(socket){
-    console.log('connected...');
-});
+http.createServer(onRequest).listen(8888);
 
-server.listen(8888);
-
+console.log('Server has started');
